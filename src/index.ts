@@ -9,7 +9,7 @@
  *   Red Hat, Inc. - initial API and implementation
  */
 
-import * as theia from '@theia/plugin';
+import * as theia from '@wiptheia/plugin';
 import * as _ from 'lodash';
 const disposables: theia.Disposable[] = [];
 
