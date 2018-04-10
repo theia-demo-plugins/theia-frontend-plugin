@@ -1,0 +1,29 @@
+{
+  "name": "simple-plugin",
+  "publisher": "redhat",
+  "version": "0.0.1",
+  "description": "Simple Test Plugin",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "build": "webpack-cli --config webpack.config.js",
+    "watch": "webpack-cli -w --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oleksii Kurinnyi <okurinny@redhat.com>",
+  "license": "EPL-1.0",
+  "theiaPlugin": {
+    "worker": "dist/simplePlugin.js"
+  },
+  "devDependencies": {
+    "@wiptheia/plugin": "^0.3.8-20180409",
+    "@types/lodash": "^4.14.105",
+    "clean-webpack-plugin": "^0.1.19",
+    "ts-loader": "^4.1.0",
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
+  }
+}

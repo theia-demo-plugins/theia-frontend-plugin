@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "outDir": "dist",
+        "lib": [
+            "es6", "webworker"
+        ],
+        "sourceMap": true,
+        "rootDir": "src",
+        "strict": true,
+        "noUnusedLocals": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
+
