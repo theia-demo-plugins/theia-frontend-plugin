@@ -6,15 +6,13 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@theia/plugin@file:../../theia-plugins/packages/plugin":
-  version "0.3.8"
-
-"@theia/plugin@file:///Users/benoitf/Documents/git/theia-plugins/packages/plugin":
-  version "0.3.8"
-
 "@types/lodash@^4.14.105":
   version "4.14.106"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.106.tgz#6093e9a02aa567ddecfe9afadca89e53e5dce4dd"
+
+"@wiptheia/plugin@latest":
+  version "0.3.8-20180411"
+  resolved "https://registry.yarnpkg.com/@wiptheia/plugin/-/plugin-0.3.8-20180411.tgz#eca5a57c00b9662b134a640f7537102f6b79402f"
 
 abbrev@1:
   version "1.1.1"

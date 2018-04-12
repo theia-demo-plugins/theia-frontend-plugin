@@ -15,7 +15,7 @@
     "worker": "dist/simplePlugin.js"
   },
   "devDependencies": {
-    "@wiptheia/plugin": "^0.3.8-20180409",
+    "@wiptheia/plugin": "latest",
     "@types/lodash": "^4.14.105",
     "clean-webpack-plugin": "^0.1.19",
     "ts-loader": "^4.1.0",
