@@ -27,8 +27,71 @@ export function doStartThings() {
             }
         })
     );
+    const quickPickTestCommand = {
+        id: 'simple-plugin-quick-pick-string-command',
+        label: "Test Quick Pick String Items"
+    }
+    disposables.push(theia.commands.registerCommand(quickPickTestCommand, (...args: any[]) => testQuickPick()));
+
+    const quickPickTestObjCommand = {
+        id: 'simple-plugin-quick-pick-object-command',
+        label: "Test Quick Pick Object Item"
+    }
+    disposables.push(theia.commands.registerCommand(quickPickTestObjCommand, (...args: any[]) => testQuickPickObject()));
+
+   
 }
 
+function testQuickPickObject() {
+    const option: theia.QuickPickOptions = {
+        machOnDescription: true,
+        machOnDetail: true,
+        canPickMany: false,
+        placeHolder: "Select object:",
+        onDidSelectItem: (item) => console.log(`Item ${JSON.stringify(item)} is selected`)
+    };
+    theia.window.showQuickPick<theia.QuickPickItem>(new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve([
+                {
+                    label : "foo" + Math.round(Math.random()*10),
+                    description: "foo description",
+                    detail: "foo detail"
+                },
+                {
+                    label: "bar",
+                    description: "bar description",
+                    detail: "bar detail"
+                },
+                {
+                    label: "foobar",
+                    description: "foobar description",
+                    detail: "foobar detail",
+                    picked: true
+}
+            ]);
+        }, 500);
+    }), option).then((val: theia.QuickPickItem[] | undefined) => {
+        console.log(`Quick Pick Object Selected: ${JSON.stringify(val)}`);
+    });
+}
+
+function testQuickPick(): void {
+    const option: theia.QuickPickOptions = {
+        machOnDescription: true,
+        machOnDetail: true,
+        canPickMany: false,
+        placeHolder: "Select string:",
+        onDidSelectItem: (item) => console.log(`Item ${item} is selected`)
+    };
+    theia.window.showQuickPick(new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve(["foo" + Math.round(Math.random()*10), "bar", "foobar"]);
+        }, 500);
+    }), option).then((val: string[] | undefined) => {
+        console.log(`Quick Pick Selected: ${val}`);
+    });
+}
 export function doStopThings(api: typeof theia) {
     while (disposables.length) {
         const disposable = disposables.pop();
