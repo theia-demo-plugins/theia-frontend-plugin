@@ -92,7 +92,7 @@ function testQuickPick(): void {
         console.log(`Quick Pick Selected: ${val}`);
     });
 }
-export function stop(api: typeof theia) {
+export function stop() {
     while (disposables.length) {
         const disposable = disposables.pop();
         if (disposable) {
