@@ -27,7 +27,7 @@ module.exports = {
     output: {
         filename: 'simplePlugin.js',
         libraryTarget: "var",
-        library: "simplePlugin",
+        library: "redhat_simple_plugin",
         path: path.resolve(__dirname, 'dist')
     },
     externals: {

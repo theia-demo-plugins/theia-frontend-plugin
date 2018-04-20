@@ -11,8 +11,11 @@
   },
   "author": "Oleksii Kurinnyi <okurinny@redhat.com>",
   "license": "EPL-1.0",
+  "engines": {
+    "theiaPlugin": "latest"
+  },
   "theiaPlugin": {
-    "worker": "dist/simplePlugin.js"
+    "frontend": "dist/simplePlugin.js"
   },
   "devDependencies": {
     "@wiptheia/plugin": "latest",
