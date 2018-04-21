@@ -1,6 +1,6 @@
 {
   "name": "simple-plugin",
-  "publisher": "redhat",
+  "publisher": "theia",
   "version": "0.0.1",
   "description": "Simple Test Plugin",
   "main": "dist/bundle.js",
@@ -15,7 +15,7 @@
     "theiaPlugin": "latest"
   },
   "theiaPlugin": {
-    "frontend": "dist/simplePlugin.js"
+    "frontend": "dist/theia-simple-plugin.js"
   },
   "devDependencies": {
     "@wiptheia/plugin": "latest",
