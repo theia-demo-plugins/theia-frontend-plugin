@@ -39,7 +39,56 @@ export function start() {
     }
     disposables.push(theia.commands.registerCommand(quickPickTestObjCommand, (...args: any[]) => testQuickPickObject()));
 
+    const informationMessageTestCommand = {
+        id: 'frontend-plugin-information-message-command',
+        label: "Test Information Message Item"
+    };
+    disposables.push(theia.commands.registerCommand(informationMessageTestCommand, (...args: any[]) => {
+        theia.window.showInformationMessage('Information message!');
+    }));
 
+    const informationModalMessageTestCommand = {
+        id: 'frontend-plugin-information-modal-message-command',
+        label: "Test Information Modal Message Item"
+    };
+    disposables.push(theia.commands.registerCommand(informationModalMessageTestCommand, (...args: any[]) => {
+        theia.window.showInformationMessage('Information modal message!', {modal: true}, {title: 'action1'},
+            {title: 'action2', isCloseAffordance: true}, {title: 'action3'}).then(action => {
+            console.log('>>> resolve', action);
+        });
+    }));
+
+    const warningMessageTestCommand = {
+        id: 'frontend-plugin-warning-message-command',
+        label: "Test Warning Message Item"
+    };
+    disposables.push(theia.commands.registerCommand(warningMessageTestCommand, (...args: any[]) => {
+        theia.window.showWarningMessage('Warning message!');
+    }));
+
+    const warningModalMessageTestCommand = {
+        id: 'frontend-plugin-warning-modal-message-command',
+        label: "Test Warning Modal Message Item"
+    };
+    disposables.push(theia.commands.registerCommand(warningModalMessageTestCommand, (...args: any[]) => {
+        theia.window.showWarningMessage('Warning modal message!', {modal: true});
+    }));
+
+    const errorMessageTestCommand = {
+        id: 'frontend-plugin-error-message-command',
+        label: "Test Error Message Item"
+    };
+    disposables.push(theia.commands.registerCommand(errorMessageTestCommand, (...args: any[]) => {
+        theia.window.showErrorMessage('Error message!');
+    }));
+
+    const errorModalMessageTestCommand = {
+        id: 'frontend-plugin-error-modal-message-command',
+        label: "Test Error Modal Message Item"
+    };
+    disposables.push(theia.commands.registerCommand(errorModalMessageTestCommand, (...args: any[]) => {
+        theia.window.showErrorMessage('Error modal message!', {modal: true});
+    }));
 }
 
 function testQuickPickObject() {
