@@ -13,7 +13,7 @@ import * as theia from '@wiptheia/plugin';
 import * as _ from 'lodash';
 const disposables: theia.Disposable[] = [];
 
-export function doStartThings() {
+export function start() {
     const command: theia.Command = {
         id: 'simple-plugin-command',
         label: 'Command from simple plugin'
@@ -39,7 +39,7 @@ export function doStartThings() {
     }
     disposables.push(theia.commands.registerCommand(quickPickTestObjCommand, (...args: any[]) => testQuickPickObject()));
 
-   
+
 }
 
 function testQuickPickObject() {
@@ -92,7 +92,7 @@ function testQuickPick(): void {
         console.log(`Quick Pick Selected: ${val}`);
     });
 }
-export function doStopThings(api: typeof theia) {
+export function stop() {
     while (disposables.length) {
         const disposable = disposables.pop();
         if (disposable) {

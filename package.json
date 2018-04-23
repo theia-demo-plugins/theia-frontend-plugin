@@ -1,6 +1,6 @@
 {
   "name": "simple-plugin",
-  "publisher": "redhat",
+  "publisher": "theia",
   "version": "0.0.1",
   "description": "Simple Test Plugin",
   "main": "dist/bundle.js",
@@ -11,8 +11,11 @@
   },
   "author": "Oleksii Kurinnyi <okurinny@redhat.com>",
   "license": "EPL-1.0",
+  "engines": {
+    "theiaPlugin": "latest"
+  },
   "theiaPlugin": {
-    "worker": "dist/simplePlugin.js"
+    "frontend": "dist/theia-simple-plugin.js"
   },
   "devDependencies": {
     "@wiptheia/plugin": "latest",
