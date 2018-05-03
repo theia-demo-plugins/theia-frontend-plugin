@@ -15,7 +15,7 @@ const disposables: theia.Disposable[] = [];
 
 export function start() {
     const command: theia.Command = {
-        id: 'simple-plugin-command',
+        id: 'simple-frontend-plugin-command',
         label: 'Command from simple plugin'
     };
     disposables.push(
