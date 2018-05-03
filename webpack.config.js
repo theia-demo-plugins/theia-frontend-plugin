@@ -25,9 +25,9 @@ module.exports = {
         extensions: ['.ts', '.js']
     },
     output: {
-        filename: 'theia-simple-plugin.js',
+        filename: 'theia-frontend-plugin.js',
         libraryTarget: "var",
-        library: "theia_simple_plugin",
+        library: "theia__wiptheia_theia_frontend_plugin",
         path: path.resolve(__dirname, 'dist')
     },
     externals: {
