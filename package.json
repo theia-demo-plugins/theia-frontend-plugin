@@ -1,11 +1,12 @@
 {
-  "name": "simple-plugin",
+  "name": "@wiptheia/theia-frontend-plugin",
   "publisher": "theia",
   "version": "0.0.1",
-  "description": "Simple Test Plugin",
+  "description": "Simple Frontend Test Plugin",
   "main": "dist/bundle.js",
   "scripts": {
-    "build": "webpack-cli --config webpack.config.js",
+    "compile": "webpack-cli --config webpack.config.js",
+    "build": "webpack-cli --config webpack.config.js && theia:plugin pack",
     "watch": "webpack-cli -w --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,10 +16,11 @@
     "theiaPlugin": "latest"
   },
   "theiaPlugin": {
-    "frontend": "dist/theia-simple-plugin.js"
+    "frontend": "dist/theia-frontend-plugin.js"
   },
   "devDependencies": {
     "@wiptheia/plugin": "latest",
+    "@wiptheia/plugin-package": "latest",
     "@types/lodash": "^4.14.105",
     "clean-webpack-plugin": "^0.1.19",
     "ts-loader": "^4.1.0",
