@@ -33,7 +33,7 @@ jobs:
         api-key: $GITHUB_AUTH_TOKEN
         name: frontend-plugin-$(date +'%F-%T')
         file_glob: true
-        file: dist/*
+        file: *.theia
         skip_cleanup: true
         on:
           branch: master
