@@ -11,9 +11,11 @@
 
 import * as theia from '@wiptheia/plugin';
 import * as _ from 'lodash';
+import {initEditorsCommands} from './editor';
 const disposables: theia.Disposable[] = [];
 
 export function start() {
+    initEditorsCommands();
     const command: theia.Command = {
         id: 'simple-frontend-plugin-command',
         label: 'Command from simple plugin'
@@ -89,6 +91,7 @@ export function start() {
     disposables.push(theia.commands.registerCommand(errorModalMessageTestCommand, (...args: any[]) => {
         theia.window.showErrorMessage('Error modal message!', {modal: true});
     }));
+
 }
 
 function testQuickPickObject() {
@@ -120,7 +123,7 @@ function testQuickPickObject() {
 }
             ]);
         }, 500);
-    }), option).then((val: theia.QuickPickItem[] | undefined) => {
+    }), option).then((val: theia.QuickPickItem| undefined) => {
         console.log(`Quick Pick Object Selected: ${JSON.stringify(val)}`);
     });
 }
@@ -137,7 +140,7 @@ function testQuickPick(): void {
         setTimeout(()=>{
             resolve(["foo" + Math.round(Math.random()*10), "bar", "foobar"]);
         }, 500);
-    }), option).then((val: string[] | undefined) => {
+    }), option).then((val: string | undefined) => {
         console.log(`Quick Pick Selected: ${val}`);
     });
 }
