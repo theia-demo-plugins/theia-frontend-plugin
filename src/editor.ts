@@ -8,48 +8,52 @@
  * Contributors:
  *   Red Hat, Inc. - initial API and implementation
  */
+
 import * as theia from '@wiptheia/plugin';
-export function initEditorsCommands() {
+import { CONSOLE_OUTPUT_PREFIX, COMMAND_NAME_PREFIX, PLUGIN_NAME } from './common/constants';
 
-    theia.workspace.onDidOpenTextDocument(e => {
-        console.log(`Text Document opened: ${e.uri}`);
-    });
+export function initEditorsCommands(disposables: theia.Disposable[]) {
 
-    theia.workspace.onDidCloseTextDocument( e =>{
-        console.log(`Text Document closed: ${e.uri}`);
-    });
+    disposables.push(theia.workspace.onDidOpenTextDocument(e => {
+        console.log(CONSOLE_OUTPUT_PREFIX, `Text Document opened: ${e.uri}`);
+    }));
 
-    theia.workspace.onDidChangeTextDocument( e =>{
-        if(e.contentChanges.length !== 0){
-            console.log(`Text Document Changed: 'changes: ${JSON.stringify(e.contentChanges)}', 'document: ${e.document.uri}'`);
+    disposables.push(theia.workspace.onDidCloseTextDocument(e => {
+        console.log(CONSOLE_OUTPUT_PREFIX, `Text Document closed: ${e.uri}`);
+    }));
+
+
+    disposables.push(theia.workspace.onDidChangeTextDocument(e => {
+        if(e.contentChanges.length !== 0) {
+            console.log(CONSOLE_OUTPUT_PREFIX, `Text Document Changed: 'changes: ${JSON.stringify(e.contentChanges)}', 'document: ${e.document.uri}'`);
         }
-    });
+    }));
 
-    theia.window.onDidChangeActiveTextEditor( e =>{
-        if(e){
-                    console.log(`Active Editor Changed: ${e.document.uri}`);
+    disposables.push(theia.window.onDidChangeActiveTextEditor(e => {
+        if (e) {
+            console.log(CONSOLE_OUTPUT_PREFIX, `Active Editor Changed: ${e.document.uri}`);
         } else {
-            console.log("All editors are closed");
+            console.log(CONSOLE_OUTPUT_PREFIX, 'All editors are closed');
         }
-    });
+    }));
 
-    theia.window.onDidChangeTextEditorOptions( e => {
-        console.log(`Text Editor options changed: ${e.options}`);
-    });
+    disposables.push(theia.window.onDidChangeTextEditorOptions(e => {
+        console.log(CONSOLE_OUTPUT_PREFIX, `Text Editor options changed: ${e.options}`);
+    }));
 
-    theia.window.onDidChangeTextEditorSelection(e => {
-        if(e.selections.length === 1){
+    disposables.push(theia.window.onDidChangeTextEditorSelection(e => {
+        if (e.selections.length === 1) {
             const sel = e.selections[0];
-            console.log(`Cursor position is: Ln: ${sel.end.line+1}, Col: ${sel.end.character+1}`);
+            console.log(CONSOLE_OUTPUT_PREFIX, `Cursor position is: Ln: ${sel.end.line+1}, Col: ${sel.end.character+1}`);
         }
-        
-    });
+    }));
 
-    theia.window.onDidChangeTextEditorVisibleRanges(e => {
-        console.log(`Text Editor: ${e.textEditor.document.uri} visible ranges: ${JSON.stringify(e.visibleRanges)}`);
-    });
+    disposables.push(theia.window.onDidChangeTextEditorVisibleRanges(e => {
+        console.log(CONSOLE_OUTPUT_PREFIX, `Text Editor: ${e.textEditor.document.uri} visible ranges: ${JSON.stringify(e.visibleRanges)}`);
+    }));
 
-    theia.commands.registerCommand({id: "change editor",label: "Select Editor Cursor"}, ()=>{
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'change editor', label: COMMAND_NAME_PREFIX + 'Select Editor Cursor' }, () => {
         theia.window.showQuickPick(["Block","BlockOutline", "Line", "Underline", "LineThin", "UnderlineThin" ],{placeHolder:"Select Cursor"}).then((c: string| undefined) =>{
             let cursorStyle: theia.TextEditorCursorStyle = theia.TextEditorCursorStyle.Line;
             switch(c!){
@@ -72,41 +76,44 @@ export function initEditorsCommands() {
                 cursorStyle  = theia.TextEditorCursorStyle.UnderlineThin;
                 break;
             }
-            theia.window.activeTextEditor!.options ={cursorStyle: cursorStyle};
+            theia.window.activeTextEditor!.options = { cursorStyle: cursorStyle };
         });
-    });
+    }));
 
-    theia.commands.registerCommand({id: 'reveal range test', label:'Test Reveal Range'}, ()=>{
+    disposables.push(theia.commands.registerCommand({
+        id: PLUGIN_NAME + 'reveal range test', label: COMMAND_NAME_PREFIX + 'Test Reveal Range'}, () => {
         theia.window.activeTextEditor!.revealRange(new theia.Range(new theia.Position(32, 4), new theia.Position(34,0)), theia.TextEditorRevealType.InCenter);
-    });
+    }));
 
-    theia.commands.registerCommand({id:'test editor edit',label:'Test EditorEdit'}, ()=>{
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'test editor edit', label: COMMAND_NAME_PREFIX + 'Test EditorEdit' }, () => {
         const editor = theia.window.activeTextEditor;
-        if(editor){
-            editor.edit(edit=>{
+        if (editor) {
+            editor.edit(edit => {
                 edit.insert(new theia.Position(0,0),'Hello from Plugin Editor API');
             });
         }
-    });
+    }));
 
-    theia.commands.registerCommand({id:'test editor snippet', label:"Test Editor Snippet"}, ()=>{
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'test editor snippet', label: COMMAND_NAME_PREFIX + 'Test Editor Snippet' }, () => {
         const editor = theia.window.activeTextEditor;
-        if(editor){
+        if (editor) {
             editor.insertSnippet(new theia.SnippetString('Hello from ${1|snippet,one,two|},current year: ${CURRENT_YEAR}\n\t${2:some}-Dir:${TM_DIRECTORY}, File:${TM_FILEPATH}$0'));
         }
-    });
+    }));
 
-    theia.commands.registerCommand({id:'test editor decoration', label:'Test Editor Decoration'}, ()=>{
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'test editor decoration', label: COMMAND_NAME_PREFIX + 'Test Editor Decoration' }, () => {
         const editor = theia.window.activeTextEditor;
-        if(editor){
-            const decoration1 = theia.window.createTextEditorDecorationType({color:'red', textDecoration:'underline overline dotted',cursor:'pointer',});
+        if (editor) {
+            const decoration1 = theia.window.createTextEditorDecorationType({color: 'red', textDecoration: 'underline overline dotted',cursor:'pointer',});
             editor.setDecorations(decoration1, [new theia.Range(0,0,0,9)]);
-            const decoration2 = theia.window.createTextEditorDecorationType({color:'green'})
-            editor.setDecorations(decoration2, [{range:  new theia.Range(1,0,1,5), hoverMessage:new theia.MarkdownString('Hello From Plugin')}])
-            setTimeout(()=>{
+            const decoration2 = theia.window.createTextEditorDecorationType({color: 'green'})
+            editor.setDecorations(decoration2, [{range:  new theia.Range(1,0,1,5), hoverMessage: new theia.MarkdownString('Hello From Plugin')}])
+            setTimeout(() => {
                 decoration1.dispose();
             }, 5000);
         }
-    });
-
+    }));
 }
