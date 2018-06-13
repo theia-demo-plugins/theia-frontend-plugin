@@ -10,11 +10,11 @@
  */
 
 import * as theia from '@wiptheia/plugin';
-import { COMMAND_NAME_PREFIX } from './common/constants';
+import { COMMAND_NAME_PREFIX, PLUGIN_NAME } from './common/constants';
 
 export function initEnvCommands(disposables: theia.Disposable[]) {
     const showAllQueryParametersCommand = {
-        id: 'demo-all-query-parameters-command',
+        id: PLUGIN_NAME + 'all-query-parameters-command',
         label: COMMAND_NAME_PREFIX + 'Show All Query Parameters'
     }
     disposables.push(theia.commands.registerCommand(showAllQueryParametersCommand, () => {
@@ -22,7 +22,7 @@ export function initEnvCommands(disposables: theia.Disposable[]) {
     }));
 
     const getTestQueryParameterCommand = {
-        id: 'demo-test-query-parameter-command',
+        id: PLUGIN_NAME + 'test-query-parameter-command',
         label: COMMAND_NAME_PREFIX + "Show Query Parameter 'test'"
     }
     disposables.push(theia.commands.registerCommand(getTestQueryParameterCommand, () => {
@@ -31,7 +31,7 @@ export function initEnvCommands(disposables: theia.Disposable[]) {
     }));
 
     const getPathEnvVariableCommand = {
-        id: 'demo-get-path-env-var-command',
+        id: PLUGIN_NAME + 'get-path-env-var-command',
         label: COMMAND_NAME_PREFIX + "Show Env Variable 'PATH'"
     }
     disposables.push(theia.commands.registerCommand(getPathEnvVariableCommand, () => {
@@ -41,7 +41,7 @@ export function initEnvCommands(disposables: theia.Disposable[]) {
     }));
 
     const getXEnvVariableCommand = {
-        id: 'demo-get-x-env-var-command',
+        id: PLUGIN_NAME + 'get-x-env-var-command',
         label: COMMAND_NAME_PREFIX + "Show Env Variable 'X'"
     }
     disposables.push(theia.commands.registerCommand(getXEnvVariableCommand, () => {

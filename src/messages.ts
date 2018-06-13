@@ -10,11 +10,11 @@
  */
 
 import * as theia from '@wiptheia/plugin';
-import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_PREFIX } from './common/constants';
+import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_PREFIX, PLUGIN_NAME } from './common/constants';
 
 export function initMessagesCommands(disposables: theia.Disposable[]) {
     const informationMessageTestCommand = {
-        id: 'frontend-plugin-information-message-command',
+        id: PLUGIN_NAME + 'information-message-command',
         label: COMMAND_NAME_PREFIX + 'Information Message'
     };
     disposables.push(theia.commands.registerCommand(informationMessageTestCommand, (...args: any[]) => {
@@ -22,7 +22,7 @@ export function initMessagesCommands(disposables: theia.Disposable[]) {
     }));
 
     const informationModalMessageTestCommand = {
-        id: 'frontend-plugin-information-modal-message-command',
+        id: PLUGIN_NAME + 'information-modal-message-command',
         label: COMMAND_NAME_PREFIX + 'Information Modal Message'
     };
     disposables.push(theia.commands.registerCommand(informationModalMessageTestCommand, (...args: any[]) => {
@@ -33,7 +33,7 @@ export function initMessagesCommands(disposables: theia.Disposable[]) {
     }));
 
     const warningMessageTestCommand = {
-        id: 'frontend-plugin-warning-message-command',
+        id: PLUGIN_NAME + 'warning-message-command',
         label: COMMAND_NAME_PREFIX + 'Warning Message'
     };
     disposables.push(theia.commands.registerCommand(warningMessageTestCommand, (...args: any[]) => {
@@ -41,7 +41,7 @@ export function initMessagesCommands(disposables: theia.Disposable[]) {
     }));
 
     const warningModalMessageTestCommand = {
-        id: 'frontend-plugin-warning-modal-message-command',
+        id: PLUGIN_NAME + 'warning-modal-message-command',
         label: COMMAND_NAME_PREFIX + 'Warning Modal Message'
     };
     disposables.push(theia.commands.registerCommand(warningModalMessageTestCommand, (...args: any[]) => {
@@ -49,7 +49,7 @@ export function initMessagesCommands(disposables: theia.Disposable[]) {
     }));
 
     const errorMessageTestCommand = {
-        id: 'frontend-plugin-error-message-command',
+        id: PLUGIN_NAME + 'error-message-command',
         label: COMMAND_NAME_PREFIX + 'Error Message'
     };
     disposables.push(theia.commands.registerCommand(errorMessageTestCommand, (...args: any[]) => {
@@ -57,7 +57,7 @@ export function initMessagesCommands(disposables: theia.Disposable[]) {
     }));
 
     const errorModalMessageTestCommand = {
-        id: 'frontend-plugin-error-modal-message-command',
+        id: PLUGIN_NAME + 'error-modal-message-command',
         label: COMMAND_NAME_PREFIX + 'Error Modal Message'
     };
     disposables.push(theia.commands.registerCommand(errorModalMessageTestCommand, (...args: any[]) => {

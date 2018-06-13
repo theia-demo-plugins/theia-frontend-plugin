@@ -10,7 +10,7 @@
  */
 
 import * as theia from '@wiptheia/plugin';
-import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX } from './common/constants';
+import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX, PLUGIN_NAME } from './common/constants';
 import { initEditorsCommands } from './editor';
 import { initEnvCommands } from './env';
 import { initWindowStateCommands } from './window-state';
@@ -28,7 +28,7 @@ export function start() {
 
     // Hello World command
     const command: theia.Command = {
-        id: 'demo-simple-command',
+        id: PLUGIN_NAME + 'simple-command',
         label: COMMAND_NAME_PREFIX + 'Hello World command' + CONSOLE_OUTPUT_COMMAND_SUFIX
     };
     disposables.push(

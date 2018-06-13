@@ -10,17 +10,17 @@
  */
 
 import * as theia from '@wiptheia/plugin';
-import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX } from './common/constants';
+import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX, PLUGIN_NAME } from './common/constants';
 
 export function initQuickPickCommands(disposables: theia.Disposable[]) {
     const quickPickTestCommand = {
-        id: 'demo-quick-pick-string-command',
+        id: PLUGIN_NAME + 'quick-pick-string-command',
         label: COMMAND_NAME_PREFIX + 'Quick Pick String Items' + CONSOLE_OUTPUT_COMMAND_SUFIX
     }
     disposables.push(theia.commands.registerCommand(quickPickTestCommand, (...args: any[]) => testQuickPick()));
 
     const quickPickTestObjCommand = {
-        id: 'demo-quick-pick-object-command',
+        id: PLUGIN_NAME + 'quick-pick-object-command',
         label: COMMAND_NAME_PREFIX + 'Quick Pick Object Item' + CONSOLE_OUTPUT_COMMAND_SUFIX
     }
     disposables.push(theia.commands.registerCommand(quickPickTestObjCommand, (...args: any[]) => testQuickPickObject()));
@@ -69,7 +69,7 @@ function testQuickPickObject() {
                     description: "foobar description",
                     detail: "foobar detail",
                     picked: true
-}
+                }
             ]);
         }, 500);
     }), option).then((val: theia.QuickPickItem| undefined) => {

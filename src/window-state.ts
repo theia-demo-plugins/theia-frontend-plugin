@@ -10,11 +10,11 @@
  */
 
 import * as theia from '@wiptheia/plugin';
-import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX } from './common/constants';
+import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX, PLUGIN_NAME } from './common/constants';
 
 export function initWindowStateCommands(disposables: theia.Disposable[]) {
     const showStateCommand: theia.Command = {
-        id: 'demo-show-window-state',
+        id: PLUGIN_NAME + 'show-window-state',
         label: COMMAND_NAME_PREFIX + 'Window State' + CONSOLE_OUTPUT_COMMAND_SUFIX
     };
     disposables.push(
@@ -24,7 +24,7 @@ export function initWindowStateCommands(disposables: theia.Disposable[]) {
     );
 
     const showStateWithDelayCommand: theia.Command = {
-        id: 'demo-show-window-state-delayed',
+        id: PLUGIN_NAME + 'show-window-state-delayed',
         label: COMMAND_NAME_PREFIX + 'Window State After 2.5 seconds' + CONSOLE_OUTPUT_COMMAND_SUFIX
     };
     disposables.push(

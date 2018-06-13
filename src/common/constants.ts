@@ -9,6 +9,7 @@
  *   Red Hat, Inc. - initial API and implementation
  */
 
- export const COMMAND_NAME_PREFIX = 'Demo: ';
- export const CONSOLE_OUTPUT_COMMAND_SUFIX = ' (console)';
- export const CONSOLE_OUTPUT_PREFIX = '>>>> ';
+export const PLUGIN_NAME = 'theia-frontend-plugin-';
+export const COMMAND_NAME_PREFIX = 'Demo: ';
+export const CONSOLE_OUTPUT_COMMAND_SUFIX = ' (console)';
+export const CONSOLE_OUTPUT_PREFIX = '>>>> ';

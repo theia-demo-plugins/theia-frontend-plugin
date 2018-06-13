@@ -10,7 +10,7 @@
  */
 
 import * as theia from '@wiptheia/plugin';
-import { CONSOLE_OUTPUT_PREFIX, COMMAND_NAME_PREFIX } from './common/constants';
+import { CONSOLE_OUTPUT_PREFIX, COMMAND_NAME_PREFIX, PLUGIN_NAME } from './common/constants';
 
 export function initEditorsCommands(disposables: theia.Disposable[]) {
 
@@ -52,7 +52,8 @@ export function initEditorsCommands(disposables: theia.Disposable[]) {
         console.log(CONSOLE_OUTPUT_PREFIX, `Text Editor: ${e.textEditor.document.uri} visible ranges: ${JSON.stringify(e.visibleRanges)}`);
     }));
 
-    disposables.push(theia.commands.registerCommand({id: "change editor",label: COMMAND_NAME_PREFIX + "Select Editor Cursor"}, () => {
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'change editor', label: COMMAND_NAME_PREFIX + 'Select Editor Cursor' }, () => {
         theia.window.showQuickPick(["Block","BlockOutline", "Line", "Underline", "LineThin", "UnderlineThin" ],{placeHolder:"Select Cursor"}).then((c: string| undefined) =>{
             let cursorStyle: theia.TextEditorCursorStyle = theia.TextEditorCursorStyle.Line;
             switch(c!){
@@ -79,11 +80,13 @@ export function initEditorsCommands(disposables: theia.Disposable[]) {
         });
     }));
 
-    disposables.push(theia.commands.registerCommand({id: 'reveal range test', label: COMMAND_NAME_PREFIX + 'Test Reveal Range'}, () => {
+    disposables.push(theia.commands.registerCommand({
+        id: PLUGIN_NAME + 'reveal range test', label: COMMAND_NAME_PREFIX + 'Test Reveal Range'}, () => {
         theia.window.activeTextEditor!.revealRange(new theia.Range(new theia.Position(32, 4), new theia.Position(34,0)), theia.TextEditorRevealType.InCenter);
     }));
 
-    disposables.push(theia.commands.registerCommand({id:'test editor edit',label: COMMAND_NAME_PREFIX + 'Test EditorEdit'}, () => {
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'test editor edit', label: COMMAND_NAME_PREFIX + 'Test EditorEdit' }, () => {
         const editor = theia.window.activeTextEditor;
         if (editor) {
             editor.edit(edit => {
@@ -92,14 +95,16 @@ export function initEditorsCommands(disposables: theia.Disposable[]) {
         }
     }));
 
-    disposables.push(theia.commands.registerCommand({id:'test editor snippet', label: COMMAND_NAME_PREFIX + 'Test Editor Snippet'}, () => {
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'test editor snippet', label: COMMAND_NAME_PREFIX + 'Test Editor Snippet' }, () => {
         const editor = theia.window.activeTextEditor;
         if (editor) {
             editor.insertSnippet(new theia.SnippetString('Hello from ${1|snippet,one,two|},current year: ${CURRENT_YEAR}\n\t${2:some}-Dir:${TM_DIRECTORY}, File:${TM_FILEPATH}$0'));
         }
     }));
 
-    disposables.push(theia.commands.registerCommand({id:'test editor decoration', label: COMMAND_NAME_PREFIX + 'Test Editor Decoration'}, () => {
+    disposables.push(theia.commands.registerCommand(
+        { id: PLUGIN_NAME + 'test editor decoration', label: COMMAND_NAME_PREFIX + 'Test Editor Decoration' }, () => {
         const editor = theia.window.activeTextEditor;
         if (editor) {
             const decoration1 = theia.window.createTextEditorDecorationType({color: 'red', textDecoration: 'underline overline dotted',cursor:'pointer',});
