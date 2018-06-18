@@ -14,6 +14,28 @@ import { CONSOLE_OUTPUT_PREFIX, COMMAND_NAME_PREFIX, PLUGIN_NAME } from './commo
 
 export function initEditorsCommands(disposables: theia.Disposable[]) {
 
+    disposables.push(theia.commands.registerCommand({id:'close active editor', label: COMMAND_NAME_PREFIX + 'Plugin close active editor'}, ()=>{
+        theia.commands.executeCommand('workbench.action.closeActiveEditor');
+    }));
+
+    disposables.push(theia.commands.registerCommand({id:'save editor from plugin', label:COMMAND_NAME_PREFIX + 'Plugin Save File'}, ()=>{
+        const editor = theia.window.activeTextEditor;
+        if(editor){
+            editor.document.save();
+        } else {
+            theia.window.showWarningMessage("There are no editor to save!");
+        }
+    }));
+
+    // TODO: remove comment when file api will be ready 
+    // disposables.push(theia.commands.registerCommand({id:'open editor', label: COMMAND_NAME_PREFIX + "OpenEditor"}, ()=>{
+    //     theia.workspace.openTextDocument('path to file');
+    // }));
+
+    disposables.push(theia.commands.registerCommand({id:'create document editor', label:COMMAND_NAME_PREFIX + "Create Document"}, ()=>{
+        theia.workspace.openTextDocument({content:"<Some Text>", language:'html'});
+    }));
+
     disposables.push(theia.workspace.onDidOpenTextDocument(e => {
         console.log(CONSOLE_OUTPUT_PREFIX, `Text Document opened: ${e.uri}`);
     }));
