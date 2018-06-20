@@ -10,43 +10,43 @@
  */
 
 import * as theia from '@theia/plugin';
-import { COMMAND_NAME_PREFIX, PLUGIN_NAME } from './common/constants';
+import { registerCommand } from './index';
 
-export function initEnvCommands(disposables: theia.Disposable[]) {
-    const showAllQueryParametersCommand = {
-        id: PLUGIN_NAME + 'all-query-parameters-command',
-        label: COMMAND_NAME_PREFIX + 'Show All Query Parameters'
-    }
-    disposables.push(theia.commands.registerCommand(showAllQueryParametersCommand, () => {
-        theia.window.showInformationMessage(JSON.stringify(theia.env.getQueryParameters()));
-    }));
+export function initEnvCommands() {
 
-    const getTestQueryParameterCommand = {
-        id: PLUGIN_NAME + 'test-query-parameter-command',
-        label: COMMAND_NAME_PREFIX + "Show Query Parameter 'test'"
-    }
-    disposables.push(theia.commands.registerCommand(getTestQueryParameterCommand, () => {
-        const test = theia.env.getQueryParameter('test');
-        theia.window.showInformationMessage(test === undefined ? 'undefined' : 'test=' + JSON.stringify(test));
-    }));
+    registerCommand({
+        id: 'all-query-parameters-command',
+        label: 'Show All Query Parameters',
+        callback: () => {
+            const parameters = JSON.stringify(theia.env.getQueryParameters());
+            theia.window.showInformationMessage(parameters);
+        }
+    });
 
-    const getPathEnvVariableCommand = {
-        id: PLUGIN_NAME + 'get-path-env-var-command',
-        label: COMMAND_NAME_PREFIX + "Show Env Variable 'PATH'"
-    }
-    disposables.push(theia.commands.registerCommand(getPathEnvVariableCommand, () => {
-        theia.env.getEnvVariable('PATH').then((value: string | undefined) => {
+    registerCommand({
+        id: 'test-query-parameter-command',
+        label: 'Show Query Parameter \'test\'',
+        callback: () => {
+            const test = theia.env.getQueryParameter('test');
+            theia.window.showInformationMessage(test === undefined ? 'undefined' : 'test=' + JSON.stringify(test));
+        }
+    });
+
+    registerCommand({
+        id: 'get-path-env-var-command',
+        label: 'Show Env Variable \'PATH\'',
+        callback: async () => {
+            const value: string | undefined = await theia.env.getEnvVariable('PATH');
             theia.window.showInformationMessage(value === undefined ? 'undefined' : 'PATH=' + value, { modal: true });
-        });
-    }));
+        }
+    });
 
-    const getXEnvVariableCommand = {
-        id: PLUGIN_NAME + 'get-x-env-var-command',
-        label: COMMAND_NAME_PREFIX + "Show Env Variable 'X'"
-    }
-    disposables.push(theia.commands.registerCommand(getXEnvVariableCommand, () => {
-        theia.env.getEnvVariable('X').then((value: string | undefined) => {
+    registerCommand({
+        id: 'get-x-env-var-command',
+        label: 'Show Env Variable \'X\'',
+        callback: async () => {
+            const value: string | undefined = await theia.env.getEnvVariable('X');
             theia.window.showInformationMessage(value === undefined ? 'undefined' : 'X=' + value, { modal: true });
-        });
-    }));
+        }
+    });
 }

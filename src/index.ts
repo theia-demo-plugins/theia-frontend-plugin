@@ -16,15 +16,19 @@ import { initEnvCommands } from './env';
 import { initWindowStateCommands } from './window-state';
 import { initQuickPickCommands } from './quick-pick';
 import { initMessagesCommands } from './messages';
+import { initStatusBarCommands } from './status-bar-message';
+import { initOutputChannelCommands } from './outpu-channel';
 
 const disposables: theia.Disposable[] = [];
 
 export function start() {
     initEditorsCommands(disposables);
-    initEnvCommands(disposables);
     initWindowStateCommands(disposables);
-    initQuickPickCommands(disposables);
-    initMessagesCommands(disposables);
+    initEnvCommands();
+    initQuickPickCommands();
+    initMessagesCommands();
+    initStatusBarCommands();
+    initOutputChannelCommands();
 
     // Hello World command
     const command: theia.Command = {
@@ -45,4 +49,17 @@ export function stop() {
             disposable.dispose();
         }
     }
+}
+
+export function registerCommand(command: { id: string, label: string, callback: (...args: any[]) => any }): void {
+    disposables.push(
+        theia.commands.registerCommand({
+            id: PLUGIN_NAME + command.id,
+            label: COMMAND_NAME_PREFIX + command.label
+        }, command.callback)
+    );
+}
+
+export function sleep(time: number) {
+    return new Promise(resolve => setTimeout(resolve, time));
 }
