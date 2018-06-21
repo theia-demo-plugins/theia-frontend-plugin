@@ -31,7 +31,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     externals: {
-        "@wiptheia/plugin": "theia",
         "@theia/plugin": "theia"
     }
 };

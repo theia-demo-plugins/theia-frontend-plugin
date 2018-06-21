@@ -9,7 +9,7 @@
  *   Red Hat, Inc. - initial API and implementation
  */
 
-import * as theia from '@wiptheia/plugin';
+import * as theia from '@theia/plugin';
 import { COMMAND_NAME_PREFIX, PLUGIN_NAME } from './common/constants';
 
 export function initEnvCommands(disposables: theia.Disposable[]) {
