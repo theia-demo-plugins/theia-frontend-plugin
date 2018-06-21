@@ -9,7 +9,7 @@
  *   Red Hat, Inc. - initial API and implementation
  */
 
-import * as theia from '@wiptheia/plugin';
+import * as theia from '@theia/plugin';
 import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX, PLUGIN_NAME } from './common/constants';
 import { initEditorsCommands } from './editor';
 import { initEnvCommands } from './env';
