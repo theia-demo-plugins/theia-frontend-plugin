@@ -19,7 +19,7 @@
     "frontend": "dist/theia-frontend-plugin.js"
   },
   "devDependencies": {
-    "@theia/plugin": "latest",
+    "@theia/plugin": "next",
     "@wiptheia/plugin-package": "latest",
     "@types/lodash": "^4.14.105",
     "clean-webpack-plugin": "^0.1.19",
