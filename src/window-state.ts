@@ -10,28 +10,27 @@
  */
 
 import * as theia from '@theia/plugin';
-import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX, PLUGIN_NAME } from './common/constants';
+import { CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX } from './common/constants';
+import { registerCommand, sleep } from './index';
 
 export function initWindowStateCommands(disposables: theia.Disposable[]) {
-    const showStateCommand: theia.Command = {
-        id: PLUGIN_NAME + 'show-window-state',
-        label: COMMAND_NAME_PREFIX + 'Window State' + CONSOLE_OUTPUT_COMMAND_SUFIX
-    };
-    disposables.push(
-        theia.commands.registerCommand(showStateCommand, (...args: any[]) => {
-            console.log(CONSOLE_OUTPUT_PREFIX, 'Window state: ', theia.window.state);
-        })
-    );
 
-    const showStateWithDelayCommand: theia.Command = {
-        id: PLUGIN_NAME + 'show-window-state-delayed',
-        label: COMMAND_NAME_PREFIX + 'Window State After 2.5 seconds' + CONSOLE_OUTPUT_COMMAND_SUFIX
-    };
-    disposables.push(
-        theia.commands.registerCommand(showStateWithDelayCommand, (...args: any[]) => {
-            setTimeout(() => console.log(CONSOLE_OUTPUT_PREFIX, 'Window state: ', theia.window.state), 2500);
-        })
-    );
+    registerCommand({
+        id: 'show-window-state',
+        label: 'Window State' + CONSOLE_OUTPUT_COMMAND_SUFIX,
+        callback: () => {
+            console.log(CONSOLE_OUTPUT_PREFIX, 'Window state: ', theia.window.state);
+        }
+    });
+
+    registerCommand({
+        id: 'show-window-state-delayed',
+        label: 'Window State After 2.5 seconds' + CONSOLE_OUTPUT_COMMAND_SUFIX,
+        callback: async () => {
+            await sleep(2500);
+            console.log(CONSOLE_OUTPUT_PREFIX, 'Window state: ', theia.window.state);
+        }
+    });
 
     disposables.push(
         theia.window.onDidChangeWindowState((windowState: theia.WindowState) => {

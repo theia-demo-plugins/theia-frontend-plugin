@@ -3,4 +3,5 @@ node_modules/
 yarn-error.log
 *.zip
 yarn.lock
+*.idea
 *.theia
