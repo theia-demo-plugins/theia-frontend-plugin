@@ -4,6 +4,22 @@
   "version": "0.0.1",
   "description": "Simple Frontend Test Plugin",
   "main": "dist/bundle.js",
+  "contributes": {
+      "languages": [{
+          "id": "latex",
+          "aliases": ["LaTeX", "latex"],
+          "extensions": [".tex"]
+      }],
+      "grammars": [{
+          "language": "latex",
+          "scopeName": "text.tex.latex",
+          "path": "./syntaxes/latex.tmLanguage"
+      }],
+      "snippets": [{
+          "language": "latex",
+          "path": "./snippets/snippets.json"
+      }]
+  },
   "scripts": {
     "compile": "webpack-cli --config webpack.config.js",
     "build": "webpack-cli --config webpack.config.js && theia:plugin pack",
