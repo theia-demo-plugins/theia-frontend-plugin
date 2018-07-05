@@ -18,6 +18,8 @@ import { initQuickPickCommands } from './quick-pick';
 import { initMessagesCommands } from './messages';
 import { initStatusBarCommands } from './status-bar-message';
 import { initOutputChannelCommands } from './outpu-channel';
+import { initTerminalCommands } from './terminal';
+import { initConfigurationCommands } from './configuration';
 
 const disposables: theia.Disposable[] = [];
 
@@ -29,6 +31,7 @@ export function start() {
     initMessagesCommands();
     initStatusBarCommands();
     initOutputChannelCommands();
+    initConfigurationCommands();
 
     // Hello World command
     const command: theia.Command = {
