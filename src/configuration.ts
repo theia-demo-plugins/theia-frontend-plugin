@@ -12,22 +12,41 @@
 import * as theia from '@theia/plugin';
 import { registerCommand } from './index';
 
-interface ExtendedTextOptions extends theia.TextEditorOptions {
-    fontSize?: string | undefined
-}
+// interface ExtendedTextOptions extends theia.TextEditorOptions {
+//     fontSize?: string | undefined
+// }
 
 export function initConfigurationCommands() {
     registerCommand({
         id: "get-default-workspace-configuration-command",
         label: "Get default workspace configuration",
         callback: () => {
-            const wsConfig = theia.workspace.getConfiguration();
-            const editorOps: ExtendedTextOptions = wsConfig.get<ExtendedTextOptions>('editor') || {};
-            console.log("Editor Line numbers:", editorOps.lineNumbers);
-            console.log("Editor font size:", editorOps.fontSize);
+            const wsConfig = theia.workspace.getConfiguration(); // implement return default configurations values 
+            // const editorOps: ExtendedTextOptions = wsConfig.get<ExtendedTextOptions>('editor') || {};
+            // console.log("Editor Line numbers:", editorOps.lineNumbers);
+            // console.log("Editor font size:", editorOps.fontSize);
 
-            // const fontSize = wsConfig.inspect<string>("editor.fontSize");
+            const editorOp2s = wsConfig.get('editor.lineNumbers') || "can't find";
+            console.log("Editor Line numbers:", editorOp2s);
+
+            // inspect didn't implemented.
+            // wsConfig.inspect<string>("editor.fontSize");
             // console.log("font size", fontSize);
+        }
+    });
+
+    registerCommand({
+        id: "get-line-numbers-activation-state",
+        label: "Get editor line numbers activation state",
+        callback: () => {
+            const wsConfig = theia.workspace.getConfiguration('editor'); // implement return default configurations values 
+            // const editorOps: ExtendedTextOptions = wsConfig.get<ExtendedTextOptions>('editor') || {};
+            // console.log("Editor Line numbers:", editorOps.lineNumbers);
+            // console.log("Editor font size:", editorOps.fontSize);
+
+            console.log('>>> wsConfig: ', wsConfig);
+            const lineNumbers = wsConfig.get("lineNumbers") || "can't find";
+            console.log("Editor Line numbers:", lineNumbers);
         }
     });
 }
