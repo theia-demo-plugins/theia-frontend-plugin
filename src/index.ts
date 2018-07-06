@@ -30,8 +30,9 @@ export function start() {
     initQuickPickCommands();
     initMessagesCommands();
     initStatusBarCommands();
-    initOutputChannelCommands();
+    initTerminalCommands();
     initConfigurationCommands();
+    initOutputChannelCommands();
 
     // Hello World command
     const command: theia.Command = {
