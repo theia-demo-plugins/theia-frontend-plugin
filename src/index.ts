@@ -11,26 +11,29 @@
 
 import * as theia from '@theia/plugin';
 import { COMMAND_NAME_PREFIX, CONSOLE_OUTPUT_COMMAND_SUFIX, CONSOLE_OUTPUT_PREFIX, PLUGIN_NAME } from './common/constants';
-import { initEditorsCommands } from './editor';
-import { initEnvCommands } from './env';
-import { initWindowStateCommands } from './window-state';
-import { initQuickPickCommands } from './quick-pick';
-import { initMessagesCommands } from './messages';
-import { initStatusBarCommands } from './status-bar-message';
-import { initOutputChannelCommands } from './outpu-channel';
-import { initTerminalCommands } from './terminal';
+
+// import { initEditorsCommands } from './editor';
+// import { initEnvCommands } from './env';
+// import { initWindowStateCommands } from './window-state';
+// import { initQuickPickCommands } from './quick-pick';
+// import { initMessagesCommands } from './messages';
+// import { initStatusBarCommands } from './status-bar-message';
+// import { initOutputChannelCommands } from './outpu-channel';
+// import { initTerminalCommands } from './terminal';
+import { initConfigurationCommands } from './configuration';
 
 const disposables: theia.Disposable[] = [];
 
 export function start() {
-    initEditorsCommands(disposables);
-    initWindowStateCommands(disposables);
-    initEnvCommands();
-    initQuickPickCommands();
-    initMessagesCommands();
-    initStatusBarCommands();
-    initTerminalCommands();
-    initOutputChannelCommands();
+    // initEditorsCommands(disposables);
+    // initWindowStateCommands(disposables);
+    // initEnvCommands();
+    // initQuickPickCommands();
+    // initMessagesCommands();
+    // initStatusBarCommands();
+    // initTerminalCommands();
+    // initOutputChannelCommands();
+    initConfigurationCommands();
 
     // Hello World command
     const command: theia.Command = {
