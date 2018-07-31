@@ -20,6 +20,14 @@
       "type": "object",
       "title": "TypeScript configuration",
       "properties": {
+        "test.lineNumbers": {
+          "type":"string",
+          "default": "luck"
+        },
+        "test.someProperty": {
+          "type":"string",
+          "default": "some value"
+        },
         "typescript.useCodeSnippetsOnMethodSuggest": {
             "type": "boolean",
             "default": false,
